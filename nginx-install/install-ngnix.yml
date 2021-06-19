@@ -1,0 +1,15 @@
+---
+-hosts: all
+ become: yes
+ tasks:
+   - name: Install nginx.
+     package: name={{item}} state=present
+     with_items:
+       - nginx
+       - nano
+       - sshguard
+       - curl
+       
+    - name: Copy nginx config files (main config and vhost config)
+      copy:
+        src:{{}}
